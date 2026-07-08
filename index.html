@@ -1578,10 +1578,12 @@ if(greenTrack){
 
 /* ===== FORM -> GOOGLE SHEETS + WHATSAPP ===== */
 /*
-  A integração com Google Sheets usa a URL do Apps Script publicada no atributo
-  data-sheet-endpoint do formulário. O envio é feito antes do redirecionamento.
+  IMPORTANTE:
+  Para a planilha receber os leads, o Apps Script precisa ter um doPost(e)
+  compatível com application/x-www-form-urlencoded.
+  Use o arquivo GOOGLE_SHEETS_APPS_SCRIPT_CORRETO.txt incluído neste pacote.
 */
-const GOOGLE_SHEETS_WEB_APP_URL = ''; // Opcional: cole aqui outra URL do Google Apps Script, se quiser sobrescrever o atributo do formulário.
+const GOOGLE_SHEETS_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycby_ZVKeOE1Y_8484pxxx6SMUvLQpwS65ijsA9h92NqAkI2V3LBEz6IVtyOdlviXbno2/exec'; // Se quiser, cole aqui a URL do Apps Script. Se ficar vazio, usa o data-sheet-endpoint do formulário.
 const WHATSAPP_NUMBER = '5537998234134';
 const WHATSAPP_FINAL_MESSAGE = 'Olá, acabei de preencher o formulário e gostaria de saber mais informações, por favor!';
 
@@ -1615,9 +1617,9 @@ validateOrcForm();
 
 function getSheetEndpoint(){
   const byAttr = orcForm?.getAttribute('data-sheet-endpoint') || '';
-  const endpoint = GOOGLE_SHEETS_WEB_APP_URL || byAttr;
+  const endpoint = (GOOGLE_SHEETS_WEB_APP_URL || byAttr || '').trim();
   if(!endpoint || endpoint.includes('COLE_AQUI')) return '';
-  return endpoint.trim();
+  return endpoint;
 }
 
 function getPayload(form){
@@ -1626,37 +1628,38 @@ function getPayload(form){
     const el = form.elements[name];
     payload[name] = el ? el.value.trim() : '';
   });
+
   payload.origem = 'LP Pedra Nobre';
   payload.pagina = window.location.href;
   payload.data_envio = new Date().toISOString();
+  payload.user_agent = navigator.userAgent || '';
+
   return payload;
 }
 
 async function salvarLeadNaPlanilha(payload){
   const endpoint = getSheetEndpoint();
-  if(!endpoint) return {configured:false};
 
-  const body = JSON.stringify(payload);
-
-  // sendBeacon ajuda a não perder o lead quando a página redireciona para o WhatsApp.
-  if(navigator.sendBeacon){
-    try{
-      const ok = navigator.sendBeacon(
-        endpoint,
-        new Blob([body], {type:'text/plain;charset=UTF-8'})
-      );
-      if(ok) return {configured:true, method:'beacon'};
-    }catch(err){}
+  if(!endpoint){
+    console.warn('Google Sheets não configurado: faltou a URL do Apps Script.');
+    return {ok:false, reason:'endpoint_missing'};
   }
+
+  // Apps Script funciona melhor recebendo x-www-form-urlencoded.
+  const body = new URLSearchParams();
+  Object.keys(payload).forEach(key => body.append(key, payload[key] || ''));
 
   await fetch(endpoint, {
     method:'POST',
     mode:'no-cors',
     keepalive:true,
-    body
+    headers:{
+      'Content-Type':'application/x-www-form-urlencoded;charset=UTF-8'
+    },
+    body:body.toString()
   });
 
-  return {configured:true, method:'fetch'};
+  return {ok:true};
 }
 
 function mostrarObrigado(){
@@ -1688,18 +1691,20 @@ async function enviarOrcamento(e){
     formStatus.textContent = 'Registrando seus dados...';
   }
 
-  mostrarObrigado();
-
   try{
+    // Espera a tentativa de salvar na planilha antes de ir para o WhatsApp.
+    // O limite evita travar o usuário caso a internet ou Apps Script demore.
     await Promise.race([
       salvarLeadNaPlanilha(payload),
-      new Promise(resolve => setTimeout(resolve, 1400))
+      new Promise(resolve => setTimeout(resolve, 2800))
     ]);
   }catch(err){
-    // Mesmo se a planilha falhar momentaneamente, o usuário não perde o contato pelo WhatsApp.
+    console.warn('Falha ao enviar lead para Google Sheets:', err);
   }
 
-  setTimeout(abrirWhatsapp, 700);
+  mostrarObrigado();
+
+  setTimeout(abrirWhatsapp, 900);
   return false;
 }
 </script>
