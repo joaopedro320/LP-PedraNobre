@@ -917,6 +917,30 @@ footer{background:var(--stone-black);color:rgba(255,255,255,.65);padding:80px 0 
   }
 }
 
+
+.form-success{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  min-height:320px;
+  text-align:center;
+  padding:38px 26px;
+  border:1px solid rgba(179,137,74,.28);
+  background:var(--travertine-soft);
+}
+.form-success h3{
+  font-family:var(--serif);
+  font-size:clamp(28px,4vw,42px);
+  color:var(--stone-black);
+  margin-bottom:12px;
+}
+.form-success p{
+  max-width:440px;
+  margin:0 auto;
+  color:var(--ink-soft);
+}
+
 </style>
 </head>
 <body>
@@ -961,7 +985,7 @@ footer{background:var(--stone-black);color:rgba(255,255,255,.65);padding:80px 0 
 <div class="wrap">
 <div class="hero-content">
 <span class="eyebrow">Alto padrão · Formiga/MG · desde 1994</span>
-<h1>Marmoraria de <em>ALTO PADRÃO</em> para o seu projeto.</h1>
+<h1>Marmoraria de <em>alto padrão</em> para o seu projeto.</h1>
 <p class="lead">Há mais de três décadas entregamos acabamento de alto padrão em mármore, granito, quartzito, lâminas ultracompactas e pedras industrializadas, com serviços sob medida para obras residenciais e comerciais que priorizam excelência e não abrem mão dos nobres detalhes.</p>
 <div class="hero-actions">
 <a class="btn btn-gold" href="https://wa.me/5537998234134?text=Ol%C3%A1%2C%20vi%20o%20site%20da%20marmoraria%20no%20google%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%21" rel="noopener" target="_blank">Entre em contato!</a>
@@ -1189,7 +1213,7 @@ footer{background:var(--stone-black);color:rgba(255,255,255,.65);padding:80px 0 
 <span><span class="lbl">Siga no Instagram</span><br/><span class="num">@pedranobre</span></span>
 </a>
 </div>
-<form class="reveal" data-sheet-endpoint="COLE_AQUI_A_URL_DO_GOOGLE_APPS_SCRIPT" id="orcForm" onsubmit="return enviarOrcamento(event)">
+<form class="reveal" data-sheet-endpoint="https://script.google.com/macros/s/AKfycby_ZVKeOE1Y_8484pxxx6SMUvLQpwS65ijsA9h92NqAkI2V3LBEz6IVtyOdlviXbno2/exec" id="orcForm" onsubmit="return enviarOrcamento(event)">
 <div class="frow">
 <div class="fgroup"><label>Nome *</label><input name="nome" required="" type="text"/></div>
 <div class="fgroup"><label>WhatsApp *</label><input name="whats" required="" type="tel"/></div>
@@ -1218,9 +1242,9 @@ footer{background:var(--stone-black);color:rgba(255,255,255,.65);padding:80px 0 
 <select name="medidas"><option>Sim</option><option>Não</option><option>Ainda estou avaliando</option></select>
 </div>
 </div>
-<div class="fgroup"><label>Mensagem *</label><textarea name="mensagem" placeholder="Conte um pouco sobre o seu projeto.." required=""></textarea></div>
+<div class="fgroup"><label>Mensagem</label><textarea name="mensagem" placeholder="Opcional: conte um pouco sobre o seu projeto."></textarea></div>
 <button class="btn btn-gold" disabled="" id="submitOrc" type="submit">Preencha todos os campos</button><p class="form-status" id="formStatus"></p>
-<p class="fine">Ao enviar, os dados serão enviados para a planilha Google Sheets e abriremos o WhatsApp para continuar o atendimento.</p>
+<p class="fine">Ao preencher os dados acima, seus dados estão seguros conosco e em alguns minutos o nosso time entrará em contato com você.</p>
 </form>
 </div>
 </div>
@@ -1554,30 +1578,34 @@ if(greenTrack){
 
 /* ===== FORM -> GOOGLE SHEETS + WHATSAPP ===== */
 /*
-  Para concluir a integração real com Google Sheets:
-  1) Abra o arquivo GOOGLE_SHEETS_APPS_SCRIPT.txt deste pacote.
-  2) Cole o código no Apps Script da sua planilha e publique como Web App.
-  3) Cole a URL gerada abaixo ou no atributo data-sheet-endpoint do formulário.
+  A integração com Google Sheets usa a URL do Apps Script publicada no atributo
+  data-sheet-endpoint do formulário. O envio é feito antes do redirecionamento.
 */
-const GOOGLE_SHEETS_WEB_APP_URL = ''; // Cole aqui a URL do Google Apps Script publicado como Web App.
+const GOOGLE_SHEETS_WEB_APP_URL = ''; // Opcional: cole aqui outra URL do Google Apps Script, se quiser sobrescrever o atributo do formulário.
+const WHATSAPP_NUMBER = '5537998234134';
+const WHATSAPP_FINAL_MESSAGE = 'Olá, acabei de preencher o formulário e gostaria de saber mais informações, por favor!';
 
-/* ===== FORM VALIDATION (locks CTA until fully filled) ===== */
+/* ===== FORM VALIDATION ===== */
 const orcForm = document.getElementById('orcForm');
 const submitBtn = document.getElementById('submitOrc');
 const formStatus = document.getElementById('formStatus');
-const orcFields = ['nome','whats','cidade','tipo','perfil','medidas','mensagem'];
+
+const allFormFields = ['nome','whats','cidade','tipo','perfil','medidas','mensagem'];
+const requiredFormFields = ['nome','whats','cidade'];
 
 function validateOrcForm(){
-  const allFilled = orcFields.every(name => {
+  if(!orcForm || !submitBtn) return;
+  const allFilled = requiredFormFields.every(name => {
     const el = orcForm.elements[name];
     return el && el.value.trim().length > 0;
   });
   submitBtn.disabled = !allFilled;
-  submitBtn.textContent = allFilled ? 'Enviar solicitação de orçamento' : 'Preencha todos os campos';
+  submitBtn.textContent = allFilled ? 'Enviar solicitação de orçamento' : 'Preencha os campos obrigatórios';
   submitBtn.classList.toggle('is-ready', allFilled);
 }
-orcFields.forEach(name => {
-  const el = orcForm.elements[name];
+
+requiredFormFields.forEach(name => {
+  const el = orcForm?.elements[name];
   if(el){
     el.addEventListener('input', validateOrcForm);
     el.addEventListener('change', validateOrcForm);
@@ -1586,67 +1614,92 @@ orcFields.forEach(name => {
 validateOrcForm();
 
 function getSheetEndpoint(){
-  const byAttr = orcForm.getAttribute('data-sheet-endpoint') || '';
+  const byAttr = orcForm?.getAttribute('data-sheet-endpoint') || '';
   const endpoint = GOOGLE_SHEETS_WEB_APP_URL || byAttr;
   if(!endpoint || endpoint.includes('COLE_AQUI')) return '';
   return endpoint.trim();
 }
+
 function getPayload(form){
   const payload = {};
-  orcFields.forEach(name => payload[name] = form.elements[name].value.trim());
+  allFormFields.forEach(name => {
+    const el = form.elements[name];
+    payload[name] = el ? el.value.trim() : '';
+  });
   payload.origem = 'LP Pedra Nobre';
   payload.pagina = window.location.href;
   payload.data_envio = new Date().toISOString();
   return payload;
 }
-function montarMensagem(payload){
-  const labels = {
-    nome:'Nome', whats:'WhatsApp', cidade:'Cidade', tipo:'Tipo de projeto',
-    perfil:'Perfil', medidas:'Já possui medidas/projeto', mensagem:'Mensagem'
-  };
-  let linhas = ['Olá! Vim pelo site da Pedra Nobre.', ''];
-  orcFields.forEach(name => {
-    const val = payload[name];
-    if(val) linhas.push(`${labels[name]}: ${val}`);
-  });
-  return encodeURIComponent(linhas.join('\n'));
-}
+
 async function salvarLeadNaPlanilha(payload){
   const endpoint = getSheetEndpoint();
   if(!endpoint) return {configured:false};
+
+  const body = JSON.stringify(payload);
+
+  // sendBeacon ajuda a não perder o lead quando a página redireciona para o WhatsApp.
+  if(navigator.sendBeacon){
+    try{
+      const ok = navigator.sendBeacon(
+        endpoint,
+        new Blob([body], {type:'text/plain;charset=UTF-8'})
+      );
+      if(ok) return {configured:true, method:'beacon'};
+    }catch(err){}
+  }
+
   await fetch(endpoint, {
     method:'POST',
     mode:'no-cors',
-    body: JSON.stringify(payload)
+    keepalive:true,
+    body
   });
-  return {configured:true};
+
+  return {configured:true, method:'fetch'};
 }
+
+function mostrarObrigado(){
+  if(!orcForm) return;
+  orcForm.innerHTML = `
+    <div class="form-success">
+      <h3>Obrigado!</h3>
+      <p>Recebemos seus dados. Em alguns minutos, o nosso time entrará em contato com você.</p>
+    </div>
+  `;
+}
+
+function abrirWhatsapp(){
+  const texto = encodeURIComponent(WHATSAPP_FINAL_MESSAGE);
+  window.location.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${texto}`;
+}
+
 async function enviarOrcamento(e){
   e.preventDefault();
   const f = e.target;
-  if(submitBtn.disabled) return false;
+  if(!submitBtn || submitBtn.disabled) return false;
+
   const payload = getPayload(f);
+
   submitBtn.disabled = true;
-  submitBtn.textContent = 'Enviando..';
+  submitBtn.textContent = 'Enviando...';
   if(formStatus){
     formStatus.className = 'form-status';
-    formStatus.textContent = 'Registrando solicitação..';
+    formStatus.textContent = 'Registrando seus dados...';
   }
+
+  mostrarObrigado();
+
   try{
-    const result = await salvarLeadNaPlanilha(payload);
-    if(formStatus){
-      formStatus.className = 'form-status ok';
-      formStatus.textContent = result.configured ? 'Solicitação enviada para a planilha. Abrindo WhatsApp..' : 'Integração preparada. Cole a URL do Apps Script para gravar na planilha. Abrindo WhatsApp..';
-    }
+    await Promise.race([
+      salvarLeadNaPlanilha(payload),
+      new Promise(resolve => setTimeout(resolve, 1400))
+    ]);
   }catch(err){
-    if(formStatus){
-      formStatus.className = 'form-status err';
-      formStatus.textContent = 'Não foi possível registrar na planilha agora. Abrindo WhatsApp para não perder o contato.';
-    }
+    // Mesmo se a planilha falhar momentaneamente, o usuário não perde o contato pelo WhatsApp.
   }
-  const texto = montarMensagem(payload);
-  window.open(`https://wa.me/5537998234134?text=${texto}`, '_blank');
-  setTimeout(()=>{ validateOrcForm(); }, 900);
+
+  setTimeout(abrirWhatsapp, 700);
   return false;
 }
 </script>
