@@ -1,0 +1,55 @@
+// GOOGLE SHEETS - Apps Script para receber leads da LP Pedra Nobre
+// Como usar:
+// 1. Crie ou abra uma planilha no Google Sheets.
+// 2. Vá em Extensões > Apps Script.
+// 3. Cole este código e salve.
+// 4. Clique em Implantar > Nova implantação > App da Web.
+// 5. Execute como: você. Acesso: qualquer pessoa.
+// 6. Copie a URL do Web App e cole no index.html em GOOGLE_SHEETS_WEB_APP_URL.
+
+function doPost(e) {
+  var SHEET_NAME = 'Leads LP Pedra Nobre';
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var sheet = ss.getSheetByName(SHEET_NAME) || ss.insertSheet(SHEET_NAME);
+
+  if (sheet.getLastRow() === 0) {
+    sheet.appendRow([
+      'Recebido em',
+      'Nome',
+      'WhatsApp',
+      'Cidade',
+      'Tipo de projeto',
+      'Perfil',
+      'Medidas ou projeto',
+      'Mensagem',
+      'Origem',
+      'Página',
+      'Data enviada pelo site'
+    ]);
+  }
+
+  var data = {};
+  try {
+    data = JSON.parse(e.postData.contents || '{}');
+  } catch (err) {
+    data = e.parameter || {};
+  }
+
+  sheet.appendRow([
+    new Date(),
+    data.nome || '',
+    data.whats || '',
+    data.cidade || '',
+    data.tipo || '',
+    data.perfil || '',
+    data.medidas || '',
+    data.mensagem || '',
+    data.origem || 'LP Pedra Nobre',
+    data.pagina || '',
+    data.data_envio || ''
+  ]);
+
+  return ContentService
+    .createTextOutput(JSON.stringify({ ok: true }))
+    .setMimeType(ContentService.MimeType.JSON);
+}

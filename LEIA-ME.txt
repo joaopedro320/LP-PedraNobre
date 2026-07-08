@@ -1,0 +1,15 @@
+LP Pedra Nobre ajustada
+
+Arquivos principais:
+- index.html: landing page ajustada.
+- assets/: imagens otimizadas usadas na LP e no carrossel.
+- GOOGLE_SHEETS_APPS_SCRIPT.txt: código para colar no Apps Script da planilha.
+
+Pendências para publicar:
+1. Colar os links reais nos cards:
+   - #COLE-AQUI-O-LINK-DA-LP-DE-REVESTIMENTOS
+   - #COLE-AQUI-O-LINK-DA-LP-CONCEPT
+2. Publicar o Apps Script como Web App e colar a URL no index.html em:
+   const GOOGLE_SHEETS_WEB_APP_URL = '';
+
+A integração do formulário já está preparada. Sem a URL do Apps Script, o formulário abre o WhatsApp e mostra aviso de que falta configurar a planilha.
