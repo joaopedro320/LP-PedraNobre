@@ -1,0 +1,124 @@
+/*
+GOOGLE SHEETS / APPS SCRIPT CORRETO PARA A LP PEDRA NOBRE
+
+Como usar:
+1. Abra a planilha do Google Sheets.
+2. Vá em Extensões > Apps Script.
+3. Apague o código antigo e cole este código inteiro.
+4. Salve.
+5. Clique em Implantar > Nova implantação.
+6. Tipo: App da Web.
+7. Executar como: você mesmo.
+8. Quem tem acesso: qualquer pessoa.
+9. Copie a URL terminada em /exec.
+10. Cole essa URL no HTML, no atributo data-sheet-endpoint do formulário:
+    <form ... data-sheet-endpoint="COLE_AQUI_A_URL_DO_APPS_SCRIPT" ...>
+
+Se você mudar o código depois, crie uma NOVA versão/implantação ou atualize a implantação.
+*/
+
+const SHEET_NAME = 'Leads';
+
+function doGet(e) {
+  return ContentService
+    .createTextOutput(JSON.stringify({ status: 'online', message: 'Webhook Pedra Nobre ativo' }))
+    .setMimeType(ContentService.MimeType.JSON);
+}
+
+function doPost(e) {
+  const lock = LockService.getScriptLock();
+  lock.waitLock(10000);
+
+  try {
+    const ss = SpreadsheetApp.getActiveSpreadsheet();
+    let sheet = ss.getSheetByName(SHEET_NAME);
+
+    if (!sheet) {
+      sheet = ss.insertSheet(SHEET_NAME);
+    }
+
+    setupHeader_(sheet);
+
+    const data = parseRequest_(e);
+
+    sheet.appendRow([
+      new Date(),
+      data.nome || '',
+      data.whats || '',
+      data.cidade || '',
+      data.tipo || '',
+      data.perfil || '',
+      data.medidas || '',
+      data.mensagem || '',
+      data.origem || '',
+      data.pagina || '',
+      data.data_envio || '',
+      data.user_agent || ''
+    ]);
+
+    return ContentService
+      .createTextOutput(JSON.stringify({ status: 'ok' }))
+      .setMimeType(ContentService.MimeType.JSON);
+
+  } catch (err) {
+    return ContentService
+      .createTextOutput(JSON.stringify({ status: 'error', message: String(err) }))
+      .setMimeType(ContentService.MimeType.JSON);
+
+  } finally {
+    lock.releaseLock();
+  }
+}
+
+function setupHeader_(sheet) {
+  const header = [
+    'Recebido em',
+    'Nome',
+    'WhatsApp',
+    'Cidade',
+    'Tipo de projeto',
+    'Perfil',
+    'Tem medidas/projeto',
+    'Mensagem',
+    'Origem',
+    'Página',
+    'Data envio site',
+    'User Agent'
+  ];
+
+  const firstRow = sheet.getRange(1, 1, 1, header.length).getValues()[0];
+  const isEmpty = firstRow.every(cell => !cell);
+
+  if (isEmpty) {
+    sheet.getRange(1, 1, 1, header.length).setValues([header]);
+    sheet.setFrozenRows(1);
+  }
+}
+
+function parseRequest_(e) {
+  // Quando o HTML envia application/x-www-form-urlencoded,
+  // os dados chegam aqui:
+  if (e && e.parameter && Object.keys(e.parameter).length > 0) {
+    return e.parameter;
+  }
+
+  // Fallback para JSON, caso você teste por Postman/Insomnia.
+  if (e && e.postData && e.postData.contents) {
+    const raw = e.postData.contents;
+
+    try {
+      return JSON.parse(raw);
+    } catch (jsonErr) {
+      const obj = {};
+      raw.split('&').forEach(pair => {
+        const parts = pair.split('=');
+        const key = decodeURIComponent(parts[0] || '');
+        const value = decodeURIComponent((parts[1] || '').replace(/\+/g, ' '));
+        if (key) obj[key] = value;
+      });
+      return obj;
+    }
+  }
+
+  return {};
+}

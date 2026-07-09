@@ -1,0 +1,24 @@
+AJUSTE DO FORMULÁRIO - PEDRA NOBRE
+
+O HTML foi ajustado para enviar o lead para Google Sheets antes de redirecionar para o WhatsApp.
+
+O motivo mais provável de não chegar nada na planilha:
+o Apps Script antigo não está lendo o formato enviado pelo site ou a implantação do Web App não está pública/correta.
+
+O pacote contém:
+- index.html
+- GOOGLE_SHEETS_APPS_SCRIPT_CORRETO.txt
+
+Passos obrigatórios:
+1. Abra sua planilha do Google Sheets.
+2. Vá em Extensões > Apps Script.
+3. Cole o código do arquivo GOOGLE_SHEETS_APPS_SCRIPT_CORRETO.txt.
+4. Publique como App da Web.
+5. Copie a URL /exec.
+6. Cole essa URL no index.html no atributo data-sheet-endpoint do formulário.
+
+Depois disso:
+- o lead cai na aba 'Leads';
+- os campos somem;
+- aparece 'Obrigado!';
+- a pessoa é enviada para o WhatsApp.
