@@ -1026,7 +1026,7 @@ footer{background:var(--stone-black);color:rgba(255,255,255,.65);padding:80px 0 
 <div class="hero-stats">
 <div><div class="num" data-count="1994" data-suffix="">0</div><div class="lbl">Ano de fundação</div></div>
 <div><div class="num" data-count="100" data-suffix="%">0%</div><div class="lbl">Serviços sob medida</div></div>
-<div><div class="num location-copy">Atendemos Formiga e toda a região de MG</div></div>
+<div><div class="num location-copy">Atendem Formiga e região</div></div>
 </div>
 </div>
 </section>
@@ -1668,18 +1668,16 @@ async function salvarLeadNaPlanilha(payload){
     return {ok:false, reason:'endpoint_missing'};
   }
 
-  // Apps Script funciona melhor recebendo x-www-form-urlencoded.
-  const body = new URLSearchParams();
-  Object.keys(payload).forEach(key => body.append(key, payload[key] || ''));
+  // OBS: o Apps Script redireciona (302) a resposta do doPost para uma URL interna do Google,
+  // e nesse redirecionamento o navegador descarta o corpo do POST em requisições no-cors.
+  // Por isso os dados vão como parâmetros de URL (GET), que o script também aceita via e.parameter.
+  const query = new URLSearchParams();
+  Object.keys(payload).forEach(key => query.append(key, payload[key] || ''));
 
-  await fetch(endpoint, {
-    method:'POST',
+  await fetch(`${endpoint}?${query.toString()}`, {
+    method:'GET',
     mode:'no-cors',
-    keepalive:true,
-    headers:{
-      'Content-Type':'application/x-www-form-urlencoded;charset=UTF-8'
-    },
-    body:body.toString()
+    keepalive:true
   });
 
   return {ok:true};
