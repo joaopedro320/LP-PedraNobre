@@ -8,10 +8,28 @@
 <meta content="Marmoraria familiar há 30 anos em Formiga/MG. Bancadas e serviços sob medida em mármore, granito e quartzito para obras de alto padrão." name="description"/>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,500;1,600&amp;family=Poppins:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;1,600&amp;family=Poppins:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link as="image" fetchpriority="high" href="assets/galeria/projeto-32.webp" rel="preload"/>
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-PXGKFQ5P');</script>
 <!-- End Google Tag Manager -->
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '944871645305559');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=944871645305559&amp;ev=PageView&amp;noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
 <style>
 :root{
   --stone-black:#3d3d3d;
@@ -20,6 +38,7 @@
   --travertine-soft:#f7f3ea;
   --gold:#b3894a;
   --gold-soft:#d9b880;
+  --gold-text:#8c6a2e;
   --line:rgba(179,137,74,.35);
   --ink:#1c1a17;
   --ink-soft:#5c554c;
@@ -44,7 +63,7 @@ a{color:inherit;text-decoration:none;}
   font-size:12px;
   letter-spacing:.22em;
   text-transform:uppercase;
-  color:var(--gold);
+  color:var(--gold-text);
   font-weight:600;
   display:inline-flex;
   align-items:center;
@@ -53,7 +72,7 @@ a{color:inherit;text-decoration:none;}
 }
 h1,h2,h3{font-family:var(--serif);font-weight:600;letter-spacing:-.01em;line-height:1.12;color:var(--stone-black);}
 h2{font-size:clamp(28px,4vw,44px);font-weight:600;}
-h2 em{font-style:italic;font-weight:600;color:var(--gold);}
+h2 em{font-style:italic;font-weight:600;color:var(--gold-text);}
 p{color:var(--ink-soft);line-height:1.7;font-size:16px;}
 .btn{
   display:inline-flex;align-items:center;gap:10px;
@@ -269,7 +288,7 @@ body.menu-open{overflow:hidden;}
 .mat-card:hover img{transform:scale(1.04);opacity:1;}
 .mat-card::after{display:none;}
 .mat-card-content{position:static;padding:22px 20px 24px;color:var(--stone-black);background:#fff;min-height:176px;}
-.mat-card .n{font-family:var(--serif);font-size:12px;letter-spacing:.12em;color:var(--gold);}
+.mat-card .n{font-family:var(--serif);font-size:12px;letter-spacing:.12em;color:var(--gold-text);}
 .mat-card h3{font-family:var(--serif);font-size:22px;font-weight:600;color:var(--stone-black);margin:8px 0 10px;}
 .mat-card p{color:var(--ink-soft);font-size:13.5px;line-height:1.58;}
 
@@ -278,7 +297,7 @@ body.menu-open{overflow:hidden;}
 .dif-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(61,61,61,.1);margin-top:60px;}
 .dif-item{background:var(--travertine);padding:40px 34px;transition:transform .35s cubic-bezier(.16,.8,.24,1), box-shadow .35s ease, background .35s ease;}
 .dif-item:hover{transform:translateY(-6px);box-shadow:0 20px 40px -14px rgba(61,61,61,.18);background:#fff;}
-.dif-item .n{font-family:var(--serif);font-size:14px;color:var(--gold);}
+.dif-item .n{font-family:var(--serif);font-size:14px;color:var(--gold-text);}
 .dif-item h4{font-family:var(--serif);font-weight:400;font-size:21px;margin:16px 0 12px;}
 .dif-item p{font-size:14.5px;}
 
@@ -290,15 +309,12 @@ body.menu-open{overflow:hidden;}
 .grupo .wrap{max-width:1180px;}
 .grupo-head{max-width:720px;margin-bottom:48px;}
 .grupo-head p{margin-top:16px;color:var(--ink-soft);font-size:16px;line-height:1.6;}
-.grupo-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:rgba(61,61,61,.1);border-radius:4px;overflow:hidden;}
-.grupo-card{background:#fff;padding:40px 36px;text-decoration:none;display:block;transition:background .3s ease,transform .3s ease;position:relative;}
-.grupo-card:hover{background:var(--travertine-soft);transform:translateY(-2px);}
-.grupo-card .eyebrow{display:flex;align-items:center;gap:10px;}
-.grupo-card .ext-ico{width:26px;height:26px;border-radius:50%;background:var(--stone-black);display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;}
-.grupo-card .ext-ico svg{width:12px;height:12px;}
-.grupo-card h3{font-family:var(--serif);font-size:24px;font-weight:600;color:var(--stone-black);margin:14px 0 10px;}
-.grupo-card p{color:var(--ink-soft);font-size:14.5px;line-height:1.55;margin-bottom:18px;}
-.grupo-card .link{font-family:var(--sans);font-size:13px;font-weight:600;color:var(--gold);text-transform:uppercase;letter-spacing:.05em;display:inline-flex;align-items:center;gap:6px;}
+.grupo-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+.grupo-card{background:#fff;border:1px solid rgba(61,61,61,.14);border-radius:4px;padding:34px 30px;text-decoration:none;display:flex;flex-direction:column;gap:12px;transition:transform .4s ease, box-shadow .4s ease, border-color .4s ease;}
+.grupo-card:hover{transform:translateY(-4px);box-shadow:0 18px 36px rgba(61,61,61,.1);border-color:var(--gold);}
+.grupo-card h3{font-family:var(--serif);font-size:20px;font-weight:600;color:var(--stone-black);margin:0;}
+.grupo-card p{color:var(--ink-soft);font-size:14px;line-height:1.55;margin:0;}
+.grupo-card .link{font-family:var(--sans);font-size:13px;font-weight:600;color:var(--stone-black);letter-spacing:.03em;display:inline-flex;align-items:center;gap:8px;margin-top:4px;}
 @media(max-width:768px){.grupo-grid{grid-template-columns:1fr;}.grupo{padding:70px 0;}}
 .arq-img img{width:100%;height:100%;object-fit:cover;}
 .arq-text{background:var(--stone-black);color:#fff;display:flex;align-items:center;padding:80px;}
@@ -597,6 +613,7 @@ footer{background:var(--stone-black);color:rgba(255,255,255,.65);padding:80px 0 
 .green-gallery{padding:120px 0;background:linear-gradient(180deg,#3d3d3d 0%,#333333 52%,#1f1f1f 100%);color:#f7f3ea;overflow:hidden;}
 .green-gallery .eyebrow{color:var(--gold-soft);}
 .green-gallery h2{color:#fff;max-width:740px;}
+.green-gallery h2 em{color:var(--gold-soft);}
 .green-gallery .gallery-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:38px;}
 .green-gallery .gallery-head p{color:rgba(255,255,255,.62);max-width:430px;margin:0;}
 .green-shell{position:relative;overflow:hidden;}
@@ -751,7 +768,7 @@ footer{background:var(--stone-black);color:rgba(255,255,255,.65);padding:80px 0 
     display:block !important;
     visibility:visible !important;
     opacity:1 !important;
-    color:var(--gold) !important;
+    color:var(--gold-text) !important;
     font-size:12px !important;
     letter-spacing:.12em !important;
     margin:0 0 6px !important;
@@ -1011,7 +1028,7 @@ footer{background:var(--stone-black);color:rgba(255,255,255,.65);padding:80px 0 
 </a>
 </nav>
 <div class="header-cta">
-<a class="btn btn-gold" href="#contato">Preencher formulário</a>
+<a class="btn btn-gold" href="#contato">Solicitar orçamento</a>
 <button aria-expanded="false" aria-label="Abrir menu" class="nav-toggle" id="navToggle"><span></span><span></span><span></span></button>
 </div>
 </div>
@@ -1025,11 +1042,11 @@ footer{background:var(--stone-black);color:rgba(255,255,255,.65);padding:80px 0 
 <a href="#processo">Processo</a>
 <a href="#contato">Contato</a>
 <a href="https://www.instagram.com/pedranobre/" rel="noopener" target="_blank">Instagram</a>
-<a class="btn btn-gold" href="#contato">Preencher formulário</a>
+<a class="btn btn-gold" href="#contato">Solicitar orçamento</a>
 </div>
 <!-- ===== HERO ===== -->
 <section class="hero">
-<div class="hero-bg"><img alt="Cozinha clara de alto padrão com ilha em pedra" src="assets/galeria/projeto-32.webp"/></div>
+<div class="hero-bg"><img alt="Cozinha clara de alto padrão com ilha em pedra" src="assets/galeria/projeto-32.webp" width="1080" height="1350" fetchpriority="high"/></div>
 <div class="wrap">
 <div class="hero-content">
 <span class="eyebrow">Alto padrão · Formiga/MG · desde 1994</span>
@@ -1054,10 +1071,10 @@ footer{background:var(--stone-black);color:rgba(255,255,255,.65);padding:80px 0 
 <div class="sobre-img reveal-scale">
 <div class="sobre-carousel" id="sobreCarousel" aria-label="Carrossel de projetos Pedra Nobre">
 <div class="sobre-track">
-<figure class="sobre-slide active"><img src="assets/destaques/sobre-green-kitchen.webp" alt="Cozinha com ilha em pedra verde natural" loading="lazy"/></figure>
-<figure class="sobre-slide"><img src="assets/galeria/projeto-32.webp" alt="Cozinha clara com ilha em pedra" loading="lazy"/></figure>
-<figure class="sobre-slide"><img src="assets/galeria/projeto-34.webp" alt="Painel de sala em pedra natural" loading="lazy"/></figure>
-<figure class="sobre-slide"><img src="assets/destaques/sobre-lavabo-travertino.webp" alt="Bancada de lavabo em travertino com acessórios de decoração" loading="lazy"/></figure>
+<figure class="sobre-slide active"><img src="assets/destaques/sobre-green-kitchen.webp" alt="Cozinha com ilha em pedra verde natural" loading="lazy" width="1000" height="1250"/></figure>
+<figure class="sobre-slide"><img src="assets/galeria/projeto-32.webp" alt="Cozinha clara com ilha em pedra" loading="lazy" width="1080" height="1350"/></figure>
+<figure class="sobre-slide"><img src="assets/galeria/projeto-34.webp" alt="Painel de sala em pedra natural" loading="lazy" width="1080" height="1350"/></figure>
+<figure class="sobre-slide"><img src="assets/destaques/sobre-lavabo-travertino.webp" alt="Bancada de lavabo em travertino com acessórios de decoração" loading="lazy" width="933" height="1400"/></figure>
 </div>
 <button class="sobre-nav sobre-prev" type="button" aria-label="Foto anterior">‹</button>
 <button class="sobre-nav sobre-next" type="button" aria-label="Próxima foto">›</button>
@@ -1087,15 +1104,15 @@ footer{background:var(--stone-black);color:rgba(255,255,255,.65);padding:80px 0 
 <p>Trabalhamos com mármores, granitos, quartzitos, lâminas ultracompactas e pedras industrializadas, nacionais e importadas, considerando o projeto e o estilo da obra, os ambientes e o acabamento, do primeiro corte até a entrega final.</p>
 </div>
 <div class="servicos-list reveal-stagger">
-<div class="serv-item"><span class="serv-bg"><img src="assets/galeria/projeto-17.webp" alt="" loading="lazy"/></span><div class="n">01</div><h4>Bancadas de cozinha</h4></div>
-<div class="serv-item"><span class="serv-bg"><img src="assets/galeria/projeto-11.webp" alt="" loading="lazy"/></span><div class="n">02</div><h4>Banheiros e lavabos</h4></div>
-<div class="serv-item"><span class="serv-bg"><img src="assets/galeria/projeto-08.webp" alt="" loading="lazy"/></span><div class="n">03</div><h4>Áreas gourmet</h4></div>
-<div class="serv-item"><span class="serv-bg"><img src="assets/galeria/projeto-25.webp" alt="" loading="lazy"/></span><div class="n">04</div><h4>Ilhas e tampos sob medida</h4></div>
-<div class="serv-item"><span class="serv-bg"><img src="assets/galeria/projeto-04.webp" alt="" loading="lazy"/></span><div class="n">05</div><h4>Escadas</h4></div>
-<div class="serv-item"><span class="serv-bg"><img src="assets/galeria/projeto-15.webp" alt="" loading="lazy"/></span><div class="n">06</div><h4>Nichos e cubas esculpidas</h4></div>
-<div class="serv-item"><span class="serv-bg"><img src="assets/galeria/projeto-33.webp" alt="" loading="lazy"/></span><div class="n">07</div><h4>Painéis arquitetônicos</h4></div>
-<div class="serv-item"><span class="serv-bg"><img src="assets/galeria/projeto-23.webp" alt="" loading="lazy"/></span><div class="n">08</div><h4>Piscinas</h4></div>
-<div class="serv-item"><span class="serv-bg"><img src="assets/galeria/projeto-24.webp" alt="" loading="lazy"/></span><div class="n">09</div><h4>Fachadas residenciais</h4></div>
+<div class="serv-item"><div class="n">01</div><h4>Bancadas de cozinha</h4></div>
+<div class="serv-item"><div class="n">02</div><h4>Banheiros e lavabos</h4></div>
+<div class="serv-item"><div class="n">03</div><h4>Áreas gourmet</h4></div>
+<div class="serv-item"><div class="n">04</div><h4>Ilhas e tampos sob medida</h4></div>
+<div class="serv-item"><div class="n">05</div><h4>Escadas</h4></div>
+<div class="serv-item"><div class="n">06</div><h4>Nichos e cubas construídas</h4></div>
+<div class="serv-item"><div class="n">07</div><h4>Painéis arquitetônicos</h4></div>
+<div class="serv-item"><div class="n">08</div><h4>Piscinas</h4></div>
+<div class="serv-item"><div class="n">09</div><h4>Fachadas residenciais</h4></div>
 
 </div>
 </div>
@@ -1111,27 +1128,27 @@ footer{background:var(--stone-black);color:rgba(255,255,255,.65);padding:80px 0 
 </div>
 <div class="mat-grid reveal-stagger">
 <div class="mat-card">
-<img alt="Mármore aplicado em banheira de alto padrão" src="assets/materiais/marmore.webp"/>
-<div class="mat-card-content"><div class="n">01</div><h3>Mármore</h3><p>Elegância e veios únicos, com toque macio e acabamento sofisticado para banheiras, banheiros e ambientes de destaque.</p></div>
+<img alt="Mármore aplicado em escada de alto padrão" src="assets/materiais/marmore.webp" width="640" height="800"/>
+<div class="mat-card-content"><div class="n">01</div><h3>Mármore</h3><p>Elegância e veios únicos, com toque macio e acabamento sofisticado para escadas, banheiras, mesas, lavabos e ambientes de destaque.</p></div>
 </div>
 <div class="mat-card">
-<img alt="Granito aplicado em bancada de cozinha gourmet" src="assets/materiais/granito.webp"/>
-<div class="mat-card-content"><div class="n">02</div><h3>Granito</h3><p>Alta resistência a riscos e calor, ideal para bancadas de cozinha e áreas gourmet de uso intenso.</p></div>
+<img alt="Granito aplicado em bancada de cozinha gourmet" src="assets/materiais/granito.webp" width="533" height="800"/>
+<div class="mat-card-content"><div class="n">02</div><h3>Granito</h3><p>Alta resistência a riscos e calor, ideal para bancadas de cozinha, escadas, áreas gourmet e ambientes de tráfego mais intenso.</p></div>
 </div>
 <div class="mat-card">
-<img alt="Quartzo aplicado em mesa de jantar" src="assets/materiais/quartzo.webp"/>
-<div class="mat-card-content"><div class="n">03</div><h3>Quartzo</h3><p>Rocha natural com veios marcantes, acabamento sofisticado para mesas, painéis e mobiliário de destaque.</p></div>
+<img alt="Quartzo aplicado em mesa de jantar" src="assets/materiais/quartzo.webp" width="533" height="800"/>
+<div class="mat-card-content"><div class="n">03</div><h3>Quartzo</h3><p>Material sofisticado e resistente, com textura predominantemente homogênea e visual clean para mesas, painéis e mobiliário de destaque.</p></div>
 </div>
 <div class="mat-card">
-<img alt="Ultracompacto aplicado em bancada de cozinha" src="assets/materiais/ultracompacto.webp"/>
-<div class="mat-card-content"><div class="n">04</div><h3>Ultracompacto</h3><p>Baixa porosidade e altíssima resistência, ideal para bancadas de uso intenso.</p></div>
+<img alt="Ultracompacta aplicada em bancada de cozinha" src="assets/materiais/ultracompacto.webp" width="533" height="800"/>
+<div class="mat-card-content"><div class="n">04</div><h3>Ultracompacta</h3><p>Baixa porosidade e altíssima resistência, ideal para bancadas de uso intenso.</p></div>
 </div>
 <div class="mat-card">
-<img alt="Quartzito aplicado em painel de sala" src="assets/materiais/quartzito.webp"/>
-<div class="mat-card-content"><div class="n">05</div><h3>Quartzito</h3><p>Versatilidade, resistência e veios naturais para painéis, mobiliário e ambientes de alto padrão.</p></div>
+<img alt="Quartzito aplicado em painel de sala" src="assets/materiais/quartzito.webp" width="533" height="800"/>
+<div class="mat-card-content"><div class="n">05</div><h3>Quartzito</h3><p>Versatilidade, resistência e veios naturais para painéis, mesas, mobiliários e ambientes de alto padrão.</p></div>
 </div>
 <div class="mat-card">
-<img alt="Travertino aplicado em bancada e cuba esculpida" src="assets/materiais/travertino.webp"/>
+<img alt="Travertino aplicado em bancada e cuba esculpida" src="assets/materiais/travertino.webp" width="533" height="800"/>
 <div class="mat-card-content"><div class="n">06</div><h3>Travertino</h3><p>Textura natural e tons quentes, com acabamento rústico e sofisticado para cubas, bancadas e revestimentos de destaque.</p></div>
 </div>
 </div>
@@ -1156,7 +1173,7 @@ footer{background:var(--stone-black);color:rgba(255,255,255,.65);padding:80px 0 
 <!-- ===== ARQUITETOS ===== -->
 <section class="arquitetos">
 <div class="arq-grid">
-<div class="arq-img reveal-scale"><img alt="Piscina com deck em pedra natural e paisagismo" src="assets/destaques/arq-pool.webp"/></div>
+<div class="arq-img reveal-scale"><img alt="Piscina com deck em pedra natural e paisagismo" src="assets/destaques/arq-pool.webp" width="1000" height="1250"/></div>
 <div class="arq-text reveal">
 <div>
 <span class="eyebrow">Para escritórios e obras</span>
@@ -1181,7 +1198,7 @@ footer{background:var(--stone-black);color:rgba(255,255,255,.65);padding:80px 0 
 <h2>Do primeiro contato à <em>entrega final</em>, sem surpresas.</h2>
 </div>
 <div class="proc-list reveal-stagger">
-<div class="proc-item"><div class="n">01</div><div><h4>Primeiro contato</h4><p>Você envia as informações iniciais do projeto pelo WhatsApp ou presencialmente em nossa marmoraria.</p></div></div>
+<div class="proc-item"><div class="n">01</div><div><h4>Primeiro contato</h4><p>Você envia as informações do projeto e nós iniciamos as tratativas e análises necessárias.</p></div></div>
 <div class="proc-item"><div class="n">02</div><div><h4>Entendimento da necessidade</h4><p>Analisamos minuciosamente o projeto, observando os ambientes, as medidas, as especificações, o estilo e a fase atual da obra.</p></div></div>
 <div class="proc-item"><div class="n">03</div><div><h4>Orientação sobre os materiais</h4><p>A partir do projeto, auxiliamos na escolha das pedras de cada ambiente, observando suas características, acabamentos e propriedades.</p></div></div>
 <div class="proc-item"><div class="n">04</div><div><h4>Alinhamento técnico e orçamento</h4><p>Definimos escopo, prazo e condições de execução.</p></div></div>
@@ -1199,58 +1216,57 @@ footer{background:var(--stone-black);color:rgba(255,255,255,.65);padding:80px 0 
 <span class="eyebrow">Obras finalizadas</span>
 <h2>Projetos que mostram o valor <em>do acabamento</em> bem executado.</h2>
 </div>
-<p>Seleção de projetos executados com visual limpo e abertura das imagens em tela cheia.</p>
 </div>
 </div>
 <div class="green-shell reveal">
 <div aria-label="Carrossel de imagens Pedra Nobre" class="green-track" id="greenTrack"><article class="green-slide" data-gallery-index="0">
-<img alt="Piscina e spa com deck em pedra natural e paisagismo" loading="lazy" src="assets/galeria/obra-piscina-spa.webp"/>
+<img alt="Piscina e spa com deck em pedra natural e paisagismo" loading="lazy" src="assets/galeria/obra-piscina-spa.webp" width="960" height="1200"/>
 </article><article class="green-slide" data-gallery-index="1">
-<img alt="Painel de TV em mármore com iluminação decorativa" loading="lazy" src="assets/galeria/obra-painel-tv-marmore.webp"/>
+<img alt="Painel de TV em mármore com iluminação decorativa" loading="lazy" src="assets/galeria/obra-painel-tv-marmore.webp" width="960" height="1200"/>
 </article><article class="green-slide" data-gallery-index="2">
-<img alt="Aparador em mármore com acabamento curvo" loading="lazy" src="assets/galeria/obra-aparador-marmore.webp"/>
+<img alt="Aparador em mármore com acabamento curvo" loading="lazy" src="assets/galeria/obra-aparador-marmore.webp" width="960" height="1200"/>
 </article><article class="green-slide" data-gallery-index="3">
-<img alt="Sala de jantar com mesa em mármore e vista para o jardim" loading="lazy" src="assets/galeria/obra-sala-jantar.webp"/>
+<img alt="Sala de jantar com mesa em mármore e vista para o jardim" loading="lazy" src="assets/galeria/obra-sala-jantar.webp" width="960" height="1200"/>
 </article><article class="green-slide" data-gallery-index="4">
-<img alt="Lavabo em ônix com cuba esculpida e iluminação embutida" loading="lazy" src="assets/galeria/obra-lavabo-onix.webp"/>
+<img alt="Lavabo em ônix com cuba esculpida e iluminação embutida" loading="lazy" src="assets/galeria/obra-lavabo-onix.webp" width="800" height="1200"/>
 </article><article class="green-slide" data-gallery-index="5">
-<img alt="Cozinha com ilha em pedra escura e marcenaria em madeira" loading="lazy" src="assets/galeria/obra-cozinha-pedra-escura.webp"/>
+<img alt="Cozinha com ilha em pedra escura e marcenaria em madeira" loading="lazy" src="assets/galeria/obra-cozinha-pedra-escura.webp" width="960" height="1200"/>
 </article><article class="green-slide" data-gallery-index="6">
-<img alt="Escada em travertino com guarda-corpo em metal" loading="lazy" src="assets/galeria/obra-escada-travertino.webp"/>
+<img alt="Escada em travertino com guarda-corpo em metal" loading="lazy" src="assets/galeria/obra-escada-travertino.webp" width="800" height="1200"/>
 </article><article class="green-slide" data-gallery-index="7">
-<img alt="Parede de pedra retroiluminada à beira da piscina" loading="lazy" src="assets/galeria/obra-parede-piscina.webp"/>
+<img alt="Parede de pedra retroiluminada à beira da piscina" loading="lazy" src="assets/galeria/obra-parede-piscina.webp" width="800" height="1200"/>
 </article><article class="green-slide" data-gallery-index="8">
-<img alt="Detalhe de bancada em pedra natural" loading="lazy" src="assets/galeria/obra-detalhe-bancada.webp"/>
+<img alt="Detalhe de bancada em pedra natural" loading="lazy" src="assets/galeria/obra-detalhe-bancada.webp" width="800" height="1200"/>
 </article><article class="green-slide" data-gallery-index="9">
-<img alt="Cozinha gourmet com ilha em mármore branco" loading="lazy" src="assets/galeria/obra-cozinha-marmore-branco.webp"/>
+<img alt="Cozinha gourmet com ilha em mármore branco" loading="lazy" src="assets/galeria/obra-cozinha-marmore-branco.webp" width="800" height="1200"/>
 </article><article class="green-slide" data-gallery-index="10">
-<img alt="Bar com bancada em pedra e banquetas de madeira" loading="lazy" src="assets/galeria/obra-bar-pedra.webp"/>
+<img alt="Bar com bancada em pedra e banquetas de madeira" loading="lazy" src="assets/galeria/obra-bar-pedra.webp" width="1200" height="800"/>
 </article><article class="green-slide" data-gallery-index="11">
-<img alt="Suíte com painel de cabeceira em pedra natural" loading="lazy" src="assets/galeria/obra-suite-cabeceira.webp"/>
+<img alt="Suíte com painel de cabeceira em pedra natural" loading="lazy" src="assets/galeria/obra-suite-cabeceira.webp" width="1200" height="800"/>
 </article><article class="green-slide" data-gallery-index="12">
-<img alt="Piscina e spa com deck em pedra natural e paisagismo" loading="lazy" src="assets/galeria/obra-piscina-spa.webp"/>
+<img alt="Piscina e spa com deck em pedra natural e paisagismo" loading="lazy" src="assets/galeria/obra-piscina-spa.webp" width="960" height="1200"/>
 </article><article class="green-slide" data-gallery-index="13">
-<img alt="Painel de TV em mármore com iluminação decorativa" loading="lazy" src="assets/galeria/obra-painel-tv-marmore.webp"/>
+<img alt="Painel de TV em mármore com iluminação decorativa" loading="lazy" src="assets/galeria/obra-painel-tv-marmore.webp" width="960" height="1200"/>
 </article><article class="green-slide" data-gallery-index="14">
-<img alt="Aparador em mármore com acabamento curvo" loading="lazy" src="assets/galeria/obra-aparador-marmore.webp"/>
+<img alt="Aparador em mármore com acabamento curvo" loading="lazy" src="assets/galeria/obra-aparador-marmore.webp" width="960" height="1200"/>
 </article><article class="green-slide" data-gallery-index="15">
-<img alt="Sala de jantar com mesa em mármore e vista para o jardim" loading="lazy" src="assets/galeria/obra-sala-jantar.webp"/>
+<img alt="Sala de jantar com mesa em mármore e vista para o jardim" loading="lazy" src="assets/galeria/obra-sala-jantar.webp" width="960" height="1200"/>
 </article><article class="green-slide" data-gallery-index="16">
-<img alt="Lavabo em ônix com cuba esculpida e iluminação embutida" loading="lazy" src="assets/galeria/obra-lavabo-onix.webp"/>
+<img alt="Lavabo em ônix com cuba esculpida e iluminação embutida" loading="lazy" src="assets/galeria/obra-lavabo-onix.webp" width="800" height="1200"/>
 </article><article class="green-slide" data-gallery-index="17">
-<img alt="Cozinha com ilha em pedra escura e marcenaria em madeira" loading="lazy" src="assets/galeria/obra-cozinha-pedra-escura.webp"/>
+<img alt="Cozinha com ilha em pedra escura e marcenaria em madeira" loading="lazy" src="assets/galeria/obra-cozinha-pedra-escura.webp" width="960" height="1200"/>
 </article><article class="green-slide" data-gallery-index="18">
-<img alt="Escada em travertino com guarda-corpo em metal" loading="lazy" src="assets/galeria/obra-escada-travertino.webp"/>
+<img alt="Escada em travertino com guarda-corpo em metal" loading="lazy" src="assets/galeria/obra-escada-travertino.webp" width="800" height="1200"/>
 </article><article class="green-slide" data-gallery-index="19">
-<img alt="Parede de pedra retroiluminada à beira da piscina" loading="lazy" src="assets/galeria/obra-parede-piscina.webp"/>
+<img alt="Parede de pedra retroiluminada à beira da piscina" loading="lazy" src="assets/galeria/obra-parede-piscina.webp" width="800" height="1200"/>
 </article><article class="green-slide" data-gallery-index="20">
-<img alt="Detalhe de bancada em pedra natural" loading="lazy" src="assets/galeria/obra-detalhe-bancada.webp"/>
+<img alt="Detalhe de bancada em pedra natural" loading="lazy" src="assets/galeria/obra-detalhe-bancada.webp" width="800" height="1200"/>
 </article><article class="green-slide" data-gallery-index="21">
-<img alt="Cozinha gourmet com ilha em mármore branco" loading="lazy" src="assets/galeria/obra-cozinha-marmore-branco.webp"/>
+<img alt="Cozinha gourmet com ilha em mármore branco" loading="lazy" src="assets/galeria/obra-cozinha-marmore-branco.webp" width="800" height="1200"/>
 </article><article class="green-slide" data-gallery-index="22">
-<img alt="Bar com bancada em pedra e banquetas de madeira" loading="lazy" src="assets/galeria/obra-bar-pedra.webp"/>
+<img alt="Bar com bancada em pedra e banquetas de madeira" loading="lazy" src="assets/galeria/obra-bar-pedra.webp" width="1200" height="800"/>
 </article><article class="green-slide" data-gallery-index="23">
-<img alt="Suíte com painel de cabeceira em pedra natural" loading="lazy" src="assets/galeria/obra-suite-cabeceira.webp"/>
+<img alt="Suíte com painel de cabeceira em pedra natural" loading="lazy" src="assets/galeria/obra-suite-cabeceira.webp" width="1200" height="800"/>
 </article>
 </div></div>
 </section>
@@ -1261,7 +1277,7 @@ footer{background:var(--stone-black);color:rgba(255,255,255,.65);padding:80px 0 
 <div class="cont-info reveal">
 <span class="eyebrow">Orçamento</span>
 <h2>Solicite um orçamento para a sua obra.</h2>
-<p>Para solicitar um orçamento, preencha o formulário abaixo. Nossa equipe entra em contato o quanto antes.</p>
+<p>Para solicitar um orçamento, preencha o formulário abaixo. Logo após, nossa equipe entrará em contato com você.</p>
 <p class="loc">Formiga e região</p>
 <a class="whats ig" href="https://www.instagram.com/pedranobre/" rel="noopener" target="_blank">
 <span class="ico ico-ig" aria-hidden="true"><svg fill="none" height="18" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" width="18"><rect height="18" rx="5" width="18" x="3" y="3"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.2" cy="6.8" fill="currentColor" r="1" stroke="none"></circle></svg></span>
@@ -1270,14 +1286,14 @@ footer{background:var(--stone-black);color:rgba(255,255,255,.65);padding:80px 0 
 </div>
 <form class="reveal" data-sheet-endpoint="https://script.google.com/macros/s/AKfycby_ZVKeOE1Y_8484pxxx6SMUvLQpwS65ijsA9h92NqAkI2V3LBEz6IVtyOdlviXbno2/exec" id="orcForm" onsubmit="return enviarOrcamento(event)">
 <div class="frow">
-<div class="fgroup"><label>Nome *</label><input name="nome" required="" type="text"/></div>
-<div class="fgroup"><label>WhatsApp *</label><input name="whats" required="" type="tel"/></div>
+<div class="fgroup"><label for="f-nome">Nome *</label><input id="f-nome" name="nome" required="" type="text"/></div>
+<div class="fgroup"><label for="f-whats">WhatsApp *</label><input id="f-whats" name="whats" required="" type="tel"/></div>
 </div>
 <div class="frow">
-<div class="fgroup"><label>Cidade *</label><input name="cidade" required="" type="text"/></div>
+<div class="fgroup"><label for="f-cidade">Cidade *</label><input id="f-cidade" name="cidade" required="" type="text"/></div>
 <div class="fgroup">
-<label>Tipo de projeto</label>
-<select name="tipo">
+<label for="f-tipo">Tipo de projeto</label>
+<select id="f-tipo" name="tipo">
 <option>Residencial</option><option>Corporativo</option><option>Cozinha</option>
 <option>Banheiro/Lavabo</option><option>Área gourmet</option><option>Piscina</option>
 <option>Escada/soleira</option><option>Revestimentos/Pedras decorativas</option>
@@ -1287,19 +1303,19 @@ footer{background:var(--stone-black);color:rgba(255,255,255,.65);padding:80px 0 
 </div>
 <div class="frow">
 <div class="fgroup">
-<label>Você é</label>
-<select name="perfil">
+<label for="f-perfil">Você é</label>
+<select id="f-perfil" name="perfil">
 <option>Cliente final</option><option>Arquiteto(a)</option><option>Designer de interiores</option><option>Construtora</option>
 </select>
 </div>
 <div class="fgroup">
-<label>Já tem medidas ou projeto?</label>
-<select name="medidas"><option>Sim</option><option>Não</option><option>Ainda estou avaliando</option></select>
+<label for="f-medidas">Já tem medidas ou projeto?</label>
+<select id="f-medidas" name="medidas"><option>Sim</option><option>Não</option><option>Ainda estou avaliando</option></select>
 </div>
 </div>
-<div class="fgroup"><label>Mensagem</label><textarea name="mensagem" placeholder="Opcional: conte um pouco sobre o seu projeto."></textarea></div>
+<div class="fgroup"><label for="f-mensagem">Mensagem</label><textarea id="f-mensagem" name="mensagem" placeholder="Opcional: conte um pouco sobre o seu projeto."></textarea></div>
 <button class="btn btn-gold" disabled="" id="submitOrc" type="submit">Preencha os campos obrigatórios</button><p class="form-status" id="formStatus"></p>
-<p class="fine">Ao preencher os dados acima, seus dados estão seguros conosco e em alguns minutos o nosso time entrará em contato com você.</p>
+<p class="fine">Ao preencher o formulário acima, suas informações ficarão seguras conosco. Elas serão utilizadas para que a nossa equipe entre em contato com você e faça o atendimento.</p>
 </form>
 </div>
 </div>
@@ -1337,13 +1353,12 @@ footer{background:var(--stone-black);color:rgba(255,255,255,.65);padding:80px 0 
 </section>
 <!-- ===== CTA FINAL ===== -->
 <section class="cta-final">
-<div class="bg"><img alt="Deck em pedra natural com sombra de palmeira e piscina" loading="lazy" src="assets/destaques/cta-pool-deck.webp"/></div>
+<div class="bg"><img alt="Deck em pedra natural com sombra de palmeira e piscina" loading="lazy" src="assets/destaques/cta-pool-deck.webp" width="1400" height="932"/></div>
 <div class="wrap">
 <span class="eyebrow">Fale com a Pedra Nobre</span>
 <h2>Escolha a pedra certa, com acabamento preciso e execução segura.</h2>
 <div class="actions">
-<a class="btn btn-gold" href="#contato">Preencher formulário</a>
-<a class="btn btn-ghost-light" href="#contato">Enviar meu projeto</a>
+<a class="btn btn-gold" href="#contato">Enviar meu projeto</a>
 </div>
 </div>
 </section>
@@ -1353,20 +1368,20 @@ footer{background:var(--stone-black);color:rgba(255,255,255,.65);padding:80px 0 
 <div class="grupo-head reveal">
 <span class="eyebrow">Grupo Pedra Nobre</span>
 <h2>Outras soluções em rochas naturais para o seu projeto.</h2>
-<p>Além da marmoraria, conheça a curadoria de revestimentos e as peças autorais da Concept do Grupo Pedra Nobre.</p>
+<p>Além da marmoraria, conheça a curadoria de revestimentos e as peças autorais do Grupo Pedra Nobre.</p>
 </div>
 <div class="grupo-grid reveal-stagger">
 <a class="grupo-card" href="https://lp-pedra-nobre-revestimentos.vercel.app/" rel="noopener" target="_blank">
-<span class="eyebrow"><span class="ext-ico"><svg fill="none" stroke="#fff" stroke-width="2" viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"></path></svg></span>Pedra Nobre · Revestimentos</span>
+<span class="eyebrow">Pedra Nobre · Revestimentos</span>
 <h3>Curadoria de revestimentos</h3>
 <p>Revestimentos em pedra natural selecionados para fachadas, piscinas e ambientes internos.</p>
-<span class="link">Visitar site de Revestimentos →</span>
+<span class="link">Visitar o site da Pedra Nobre Revestimentos →</span>
 </a>
 <a class="grupo-card" href="https://pedra-nobre-adornos.vercel.app/" rel="noopener" target="_blank">
-<span class="eyebrow"><span class="ext-ico"><svg fill="none" stroke="#fff" stroke-width="2" viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"></path></svg></span>Pedra Nobre · Concept</span>
+<span class="eyebrow">Pedra Nobre · Concept</span>
 <h3>Peças autorais em rochas naturais</h3>
 <p>Design autoral para decoração, mesa posta, lavabos, mobiliário e ocasiões especiais.</p>
-<span class="link">Conhecer a Concept →</span>
+<span class="link">Conhecer Pedra Nobre Concept →</span>
 </a>
 </div>
 </div>
